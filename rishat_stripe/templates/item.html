@@ -1,26 +1,20 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Buy item</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-  <script src="https://js.stripe.com/v3/"></script>
-</head>
-
-<body>
-  <section>
-    <div class="product">
-      <div class="description">
-        <h3>Название: {{ item.name }}</h3>
-        <h3>Описание: {{ item.description }}</h4>
-        <h5>Цена: ${{ item.get_price_in_dollars }}</h5>
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <article>
+    <div class="col d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">{{ item.description }}</p>
+          <p class="card-text">${{ item.get_price_in_dollars }}</p>
+          <button class="btn btn-primary" id="checkout-button">Checkout</button>
+        </div>
       </div>
     </div>
-    <button type="button" id="checkout-button">Checkout</button>
-  </section>
-
+    </br>
+  </article>
+</div>
 {% csrf_token %}
 
 <script type="text/javascript">
@@ -50,5 +44,4 @@
             });
     });
 </script>
-</body>
-</html>
+{% endblock %}

@@ -1,28 +1,20 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Items</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-</head>
-<body>
-
-{% for item in items %}
-<section>
-        <div class="product">
-            <div class="description">
-                <h3>{{ item.name }}</h3>
-                <h3>{{ item.description }}</h4>
-                <h5>${{ item.get_price_in_dollars }}</h5>
+{% extends "base.html" %}
+{% block content %}
+    <div class="container py-5">
+    {% for item in items %}
+        <article>
+          <div class="col d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.name }}</h5>
+                  <p class="card-text">{{ item.description }}</p>
+                  <p class="card-text">${{ item.get_price_in_dollars }}</p>
+                  <a href="{% url 'item' item.pk %}" class="btn btn-primary">Перейти к товару</a>
+                </div>
             </div>
-        </div>
-        <a href="{% url 'item' item.pk %}">
-            <button type="button" id="checkout-button">Перейти к товару</button>
-        </a>
-</section>
-{% endfor %}
-
-</body>
-</html>
+          </div>
+          </br>
+        </article>
+    {% endfor %}
+    </div>
+{% endblock %}

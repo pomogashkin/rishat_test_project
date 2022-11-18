@@ -38,8 +38,7 @@ class IndexView(TemplateView):
         items = Item.objects.all()
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update({
-            'items': items,
-            "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
+            'items': items
         })
         return context
 

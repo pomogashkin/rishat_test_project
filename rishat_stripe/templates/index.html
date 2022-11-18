@@ -15,14 +15,7 @@
             <div class="description">
                 <h3>{{ item.name }}</h3>
                 <h3>{{ item.description }}</h4>
-                <h5>
-                    {% if item.currency == 'ru' %}
-                    $
-                    {% else %}
-                    ₽
-                    {% endif %}
-                    {{ item.get_price_in_dollars }}
-                </h5>
+                <h5>${{ item.get_price_in_dollars }}</h5>
             </div>
         </div>
         <a href="{% url 'item' item.pk %}">
